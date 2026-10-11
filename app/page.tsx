@@ -19,7 +19,7 @@ function TimeCounter() {
     return () => window.clearInterval(timer)
   }, [])
   const values = useMemo(() => {
-    const diff = Math.max(0, now - new Date('2024-08-06T00:00:00').getTime())
+    const diff = Math.max(0, now - new Date('2026-03-29T19:59:00Z').getTime())
     const seconds = Math.floor(diff / 1000)
     return [Math.floor(seconds / 86400), Math.floor(seconds / 3600) % 24, Math.floor(seconds / 60) % 60, seconds % 60]
   }, [now])
