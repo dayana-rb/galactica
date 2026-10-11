@@ -75,7 +75,7 @@ export default function Page() {
         <button className="letter-card" onClick={() => setLetterOpen(true)}><div className="mail-icon"><Mail /></div><div><span>ABRIR CARTA ESPACIAL</span><strong>Toca para leer</strong></div><ChevronRight /></button>
       </section>
 
-      <footer><Heart fill="currentColor" /> Hecho con <span>♥</span> para Tú &amp; Yo <Heart fill="currentColor" /></footer>
+      <footer><Heart fill="currentColor" /> Hecho con <span>♥</span> para ti <Heart fill="currentColor" /></footer>
       <audio ref={audioRef} loop preload="none" src="/audio/photograph-piano-cover.mp3" />
       <button className={`music-player ${playing ? 'is-playing' : ''}`} onClick={toggleMusic} aria-pressed={playing}><span className="music-button">{playing ? <Pause /> : <Play />}</span><span><small>{playing ? 'REPRODUCIENDO' : 'NUESTRA CANCIÓN'}</small><strong>Una canción para nosotros</strong></span><Music2 className="music-note" /></button>
 
