@@ -1,7 +1,10 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { ArrowDown, ChevronRight, Heart, Mail, Music2, Pause, Play, RotateCw, Sparkles, X } from 'lucide-react'
+import { ArrowDown, ChevronRight, ExternalLink, Heart, Images, Mail, Music2, Pause, Play, RotateCw, Sparkles, X } from 'lucide-react'
+
+// Replace with the shared Google Photos album link (Album > Share > Create link)
+const GOOGLE_PHOTOS_ALBUM_URL = 'https://drive.google.com/drive/folders/136RB5huXZC-_ntZtGZ15mPXbpYefHr8q?usp=sharing'
 
 const memories = [
   { date: 'AGO 2024', title: 'Nuestros comienzos', image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1723767202167-wbawoSY0oxsF6w46LpdEYYGoXHSQWk.jpg', secret: 'El inicio de nuestra pequeña galaxia. Ese día el universo decidió acercarnos.' },
@@ -19,7 +22,7 @@ function TimeCounter() {
     return () => window.clearInterval(timer)
   }, [])
   const values = useMemo(() => {
-    const diff = Math.max(0, now - new Date('2024-08-06T00:00:00').getTime())
+    const diff = Math.max(0, now - new Date('2026-03-29T19:59:00Z').getTime())
     const seconds = Math.floor(diff / 1000)
     return [Math.floor(seconds / 86400), Math.floor(seconds / 3600) % 24, Math.floor(seconds / 60) % 60, seconds % 60]
   }, [now])
@@ -73,6 +76,8 @@ export default function Page() {
       <section className="section-shell memories-section">
         <div className="section-heading left-heading"><p className="section-label">NUESTROS MOMENTOS</p><h2>Constelación de <em>recuerdos</em></h2><p className="instruction"><Sparkles /> TOCA CADA FOTO PARA DESCUBRIR SU SECRETO</p></div>
         <div className="memory-grid">{memories.map((memory, index) => <button key={memory.title} className={`memory-card card-${index + 1} ${flippedMemory === memory.title ? 'is-flipped' : ''}`} onClick={() => setFlippedMemory((current) => current === memory.title ? null : memory.title)} aria-label={`${memory.title}. Toca para ${flippedMemory === memory.title ? 'ver la foto' : 'leer el recuerdo'}`}><span className="memory-card-inner"><span className="memory-face memory-front"><img src={memory.image} alt={memory.title} /><span className="memory-shade" /><span className="memory-rotate" aria-hidden="true"><RotateCw /></span><span className="memory-copy"><small>{memory.date}</small><strong>{memory.title}</strong></span></span><span className="memory-face memory-back"><span className="back-date">{memory.date}</span><strong>{memory.title}</strong><span>{memory.secret}</span><span className="back-hint">TOCA PARA VOLVER A LA FOTO</span></span></span></button>)}</div>
+        <div className="album-link-wrap"><a className="album-link" href={GOOGLE_PHOTOS_ALBUM_URL} target="_blank" rel="noopener noreferrer"><Images aria-hidden="true" /><span>VER TODAS NUESTRAS FOTOS</span><ExternalLink aria-hidden="true" className="album-link-external" /><span className="sr-only">(se abre en Google Drive en una pestaña nueva)</span></a></div>
+
       </section>
 
       <section className="letter-section section-shell">
