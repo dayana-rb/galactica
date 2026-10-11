@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { ArrowDown, ChevronRight, Heart, Mail, Music2, Pause, Play, Sparkles, X } from 'lucide-react'
+import { ArrowDown, ChevronRight, Heart, Mail, Music2, Pause, Play, RotateCw, Sparkles, X } from 'lucide-react'
 
 const memories = [
   { date: 'AGO 2024', title: 'Nuestros comienzos', image: 'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1723767202167-wbawoSY0oxsF6w46LpdEYYGoXHSQWk.jpg', secret: 'El inicio de nuestra pequeña galaxia. Ese día el universo decidió acercarnos.' },
@@ -67,7 +67,7 @@ export default function Page() {
 
       <section className="section-shell memories-section">
         <div className="section-heading left-heading"><p className="section-label">NUESTROS MOMENTOS</p><h2>Constelación de <em>recuerdos</em></h2><p className="instruction"><Sparkles /> TOCA CADA FOTO PARA DESCUBRIR SU SECRETO</p></div>
-        <div className="memory-grid">{memories.map((memory, index) => <button key={memory.title} className={`memory-card card-${index + 1} ${flippedMemory === memory.title ? 'is-flipped' : ''}`} onClick={() => setFlippedMemory((current) => current === memory.title ? null : memory.title)} aria-label={`${memory.title}. Toca para ${flippedMemory === memory.title ? 'ver la foto' : 'leer el recuerdo'}`}><span className="memory-card-inner"><span className="memory-face memory-front"><img src={memory.image} alt={memory.title} /><span className="memory-shade" /><span className="memory-copy"><small>{memory.date}</small><strong>{memory.title}</strong><ChevronRight /></span></span><span className="memory-face memory-back"><span className="back-date">{memory.date}</span><strong>{memory.title}</strong><span>{memory.secret}</span><span className="back-hint">TOCA PARA VOLVER A LA FOTO</span></span></span></button>)}</div>
+        <div className="memory-grid">{memories.map((memory, index) => <button key={memory.title} className={`memory-card card-${index + 1} ${flippedMemory === memory.title ? 'is-flipped' : ''}`} onClick={() => setFlippedMemory((current) => current === memory.title ? null : memory.title)} aria-label={`${memory.title}. Toca para ${flippedMemory === memory.title ? 'ver la foto' : 'leer el recuerdo'}`}><span className="memory-card-inner"><span className="memory-face memory-front"><img src={memory.image} alt={memory.title} /><span className="memory-shade" /><span className="memory-rotate" aria-hidden="true"><RotateCw /></span><span className="memory-copy"><small>{memory.date}</small><strong>{memory.title}</strong></span></span><span className="memory-face memory-back"><span className="back-date">{memory.date}</span><strong>{memory.title}</strong><span>{memory.secret}</span><span className="back-hint">TOCA PARA VOLVER A LA FOTO</span></span></span></button>)}</div>
       </section>
 
       <section className="letter-section section-shell">
