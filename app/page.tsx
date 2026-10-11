@@ -31,6 +31,10 @@ export default function Page() {
   const [flippedMemory, setFlippedMemory] = useState<string | null>(null)
   const [letterOpen, setLetterOpen] = useState(false)
   const [playing, setPlaying] = useState(false)
+  const [explored, setExplored] = useState(false)
+  useEffect(() => {
+    if (explored) document.getElementById('tiempo')?.scrollIntoView({ behavior: 'smooth' })
+  }, [explored])
   const audioRef = useRef<HTMLAudioElement>(null)
   const toggleMusic = async () => {
     const audio = audioRef.current
@@ -54,9 +58,11 @@ export default function Page() {
           <h1>Nuestra <em>Galaxia</em></h1>
           <p className="hero-subtitle">Un Universo Juntos</p>
           <div className="date-pill"><span /> 6 DE AGOSTO DE 2024 <span /></div>
-          <button className="explore-button" onClick={() => document.getElementById('tiempo')?.scrollIntoView({ behavior: 'smooth' })} aria-label="Explorar nuestra historia">EXPLORAR <ArrowDown /></button>
+          <button className="explore-button" onClick={() => { if (explored) document.getElementById('tiempo')?.scrollIntoView({ behavior: 'smooth' }); else setExplored(true) }} aria-label="Explorar nuestra historia" aria-expanded={explored}>EXPLORAR <ArrowDown /></button>
         </div>
               </section>
+
+      {explored && <>
 
       <section id="tiempo" className="section-shell time-section">
         <div className="section-heading"><p className="section-label">DESDE QUE EL UNIVERSO NOS UNIÓ</p><h2>Nuestro tiempo <em>juntos</em></h2><div className="heading-line" /></div>
@@ -75,8 +81,9 @@ export default function Page() {
       </section>
 
       <footer><Heart fill="currentColor" /> Hecho con <span>♥</span> para ti <Heart fill="currentColor" /></footer>
+      </>}
       <audio ref={audioRef} loop preload="none" src="/audio/photograph-piano-cover.mp3" />
-      <button className={`music-player ${playing ? 'is-playing' : ''}`} onClick={toggleMusic} aria-pressed={playing}><span className="music-button">{playing ? <Pause /> : <Play />}</span><span><small>{playing ? 'REPRODUCIENDO' : 'NUESTRA CANCIÓN'}</small><strong>Una canción para nosotros</strong></span><Music2 className="music-note" /></button>
+      {explored && <button className={`music-player ${playing ? 'is-playing' : ''}`} onClick={toggleMusic} aria-pressed={playing}><span className="music-button">{playing ? <Pause /> : <Play />}</span><span><small>{playing ? 'REPRODUCIENDO' : 'NUESTRA CANCIÓN'}</small><strong>Una canción para nosotros</strong></span><Music2 className="music-note" /></button>}
 
       {(selectedMemory || letterOpen) && <div className="modal-backdrop" role="presentation" onClick={() => { setSelectedMemory(null); setLetterOpen(false) }}><div className="modal-card" role="dialog" aria-modal="true" aria-label={selectedMemory?.title ?? 'Carta para ti'} onClick={(event) => event.stopPropagation()}><button className="modal-close" onClick={() => { setSelectedMemory(null); setLetterOpen(false) }} aria-label="Cerrar"><X /></button>{selectedMemory && <><img src={selectedMemory.image} alt="" /><small>{selectedMemory.date}</small><h2>{selectedMemory.title}</h2><p>{selectedMemory.secret}</p></>}{letterOpen && <><div className="modal-letter-icon"><Mail /></div><small>DESDE MI CORAZÓN</small><h2>Para mi persona favorita</h2><p>Desde que llegaste, mis días tienen una luz distinta. Gracias por cada abrazo, cada risa y cada instante en el que elegimos encontrarnos. Me encanta construir este universo contigo, descubrir nuevos planetas en cada aventura y volver siempre a casa en tu mirada.</p><p>Sé que estamos pasando por un momento muy difícil, pero quiero que sepas que no voy a dejar de luchar por lo nuestro. A veces me cuesta encontrar las fuerzas para seguir y para darte el apoyo que sé que necesitas, porque yo también me siento frágil. He intentado entenderte de corazón, pero el miedo a perderte me sobrepasa y me bloquea; me cuesta darte ánimo cuando por dentro me siento tan destrozada.</p><p>Prometo seguir cuidando nuestra galaxia, celebrar tus sueños y recordarte que, entre miles de millones de estrellas, tú siempre serás mi lugar favorito.</p><p className="signature">Con todo mi amor, siempre.</p></>}</div></div>}
     </main>
