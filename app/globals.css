@@ -30,3 +30,5 @@ footer { padding: 38px 20px 120px; text-align: center; border-top: 1px solid #72
 .album-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 .album-link svg { width: 16px; height: 16px; color: var(--gold); }
 .album-link .album-link-external { width: 13px; height: 13px; opacity: .7; }
+.album-subfolders { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 16px; }
+.album-link-small { padding: 10px 20px; font-size: 10px; box-shadow: 0 0 16px #8a4fd233; }
