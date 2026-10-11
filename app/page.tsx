@@ -56,8 +56,7 @@ export default function Page() {
           <div className="date-pill"><span /> 6 DE AGOSTO DE 2024 <span /></div>
           <button className="explore-button" onClick={() => document.getElementById('tiempo')?.scrollIntoView({ behavior: 'smooth' })} aria-label="Explorar nuestra historia">EXPLORAR <ArrowDown /></button>
         </div>
-        <div className="scroll-hint" aria-hidden="true"><span>↓</span></div>
-      </section>
+              </section>
 
       <section id="tiempo" className="section-shell time-section">
         <div className="section-heading"><p className="section-label">DESDE QUE EL UNIVERSO NOS UNIÓ</p><h2>Nuestro tiempo <em>juntos</em></h2><div className="heading-line" /></div>
